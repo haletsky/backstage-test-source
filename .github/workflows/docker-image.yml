@@ -15,4 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: yarn build-image
+      run: |
+      yarn
+      yarn build:backend
+      yarn build-image
