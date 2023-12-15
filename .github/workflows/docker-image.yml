@@ -5,12 +5,27 @@ on:
     branches: [ "main" ]
 
 jobs:
+  build-runner:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: docker/build-push-action@v5
+      with:
+        push: false
+        context: .
+        file: ./.github/images/main/Dockerfile
+        tags: custom-runner-image
+
+
   build:
     runs-on: ubuntu-latest
+    container: custom-runner-image
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
+        which node
+        node -v
         yarn
         yarn build:backend
         yarn build-image
