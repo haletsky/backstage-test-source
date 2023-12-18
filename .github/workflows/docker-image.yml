@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-runner:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
     - uses: docker/build-push-action@v5
@@ -18,7 +18,7 @@ jobs:
 
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container: custom-runner-image
     steps:
     - uses: actions/checkout@v3
@@ -31,7 +31,7 @@ jobs:
         yarn build-image
 
   publish:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [build]
     if: github.event_name == 'workflow_dispatch'
     steps:
