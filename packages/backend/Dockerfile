@@ -26,7 +26,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get install -y --no-install-recommends libsqlite3-dev
 
 # From here on we use the least-privileged `node` user to run the backend.
-USER node
+USER root
 
 # This should create the app dir as `node`.
 # If it is instead created as `root` then the `tar` command below will fail: `can't create directory 'packages/': Permission denied`.
